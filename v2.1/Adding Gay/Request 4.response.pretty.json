@@ -1,0 +1,203 @@
+{
+  "jobIds": [
+    "d6d9a8a5-17c3-427d-be08-6624ccc31c89"
+  ],
+  "results": [
+    {
+      "jobId": "d6d9a8a5-17c3-427d-be08-6624ccc31c89",
+      "result": {
+        "data": {
+          "descriptor": {
+            "Select": [
+              {
+                "Kind": 1,
+                "Depth": 0,
+                "Value": "G0",
+                "GroupKeys": [
+                  {
+                    "Source": {
+                      "Entity": "Enchilada",
+                      "Property": "CohortYear"
+                    },
+                    "Calc": "G0",
+                    "IsSameAsSelect": true
+                  }
+                ],
+                "Name": "Enchilada.CohortYear"
+              },
+              {
+                "Kind": 2,
+                "Value": "M0",
+                "Name": "Count(Enchilada.UnID)"
+              },
+              {
+                "Kind": 1,
+                "SecondaryDepth": 0,
+                "Value": "G1",
+                "GroupKeys": [
+                  {
+                    "Source": {
+                      "Entity": "Enchilada",
+                      "Property": "Cum30Year"
+                    },
+                    "Calc": "G1",
+                    "IsSameAsSelect": true
+                  }
+                ],
+                "Name": "Enchilada.Cum30Year"
+              }
+            ],
+            "Expressions": {
+              "Primary": {
+                "Groupings": [
+                  {
+                    "Keys": [
+                      {
+                        "Source": {
+                          "Entity": "Enchilada",
+                          "Property": "CohortYear"
+                        },
+                        "Select": 0
+                      }
+                    ],
+                    "Member": "DM0"
+                  }
+                ]
+              },
+              "Secondary": {
+                "Groupings": [
+                  {
+                    "Keys": [
+                      {
+                        "Source": {
+                          "Entity": "Enchilada",
+                          "Property": "Cum30Year"
+                        },
+                        "Select": 2
+                      }
+                    ],
+                    "Member": "DM1"
+                  }
+                ]
+              }
+            },
+            "Limits": {
+              "Secondary": {
+                "Id": "L0",
+                "Top": {
+                  "Count": 60
+                }
+              }
+            },
+            "Version": 2
+          },
+          "dsr": {
+            "Version": 2,
+            "DS": [
+              {
+                "N": "DS0",
+                "SH": [
+                  {
+                    "DM1": [
+                      {
+                        "S": [
+                          {
+                            "N": "G1",
+                            "T": 1
+                          }
+                        ],
+                        "G1": "2nd Academic Year"
+                      },
+                      {
+                        "G1": "Not 1st or 2nd Academic Year"
+                      }
+                    ]
+                  }
+                ],
+                "PH": [
+                  {
+                    "DM0": [
+                      {
+                        "S": [
+                          {
+                            "N": "G0",
+                            "T": 1
+                          }
+                        ],
+                        "G0": "2013-14",
+                        "X": [
+                          {
+                            "S": [
+                              {
+                                "N": "M0",
+                                "T": 4
+                              }
+                            ]
+                          },
+                          {
+                            "I": 1,
+                            "M0": 35
+                          }
+                        ]
+                      },
+                      {
+                        "G0": "2014-15",
+                        "X": [
+                          {
+                            "I": 1,
+                            "M0": 41
+                          }
+                        ]
+                      },
+                      {
+                        "G0": "2015-16",
+                        "X": [
+                          {
+                            "I": 1,
+                            "M0": 45
+                          }
+                        ]
+                      },
+                      {
+                        "G0": "2016-17",
+                        "X": [
+                          {
+                            "M0": 12
+                          },
+                          {
+                            "M0": 83
+                          }
+                        ]
+                      },
+                      {
+                        "G0": "2017-18",
+                        "X": [
+                          {
+                            "M0": 18
+                          },
+                          {
+                            "M0": 91
+                          }
+                        ]
+                      },
+                      {
+                        "G0": "2018-19",
+                        "X": [
+                          {
+                            "I": 1,
+                            "M0": 100
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "IC": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
