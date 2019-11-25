@@ -1,0 +1,80 @@
+{
+   "results" : [
+      {
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "Version" : 2,
+                  "DS" : [
+                     {
+                        "N" : "DS0",
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "G0" : "Low Income",
+                                    "S" : [
+                                       {
+                                          "N" : "G0",
+                                          "T" : 1
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "G0" : "Not Low Income"
+                                 }
+                              ]
+                           }
+                        ],
+                        "IC" : true
+                     }
+                  ]
+               },
+               "descriptor" : {
+                  "Version" : 2,
+                  "Select" : [
+                     {
+                        "GroupKeys" : [
+                           {
+                              "IsSameAsSelect" : true,
+                              "Calc" : "G0",
+                              "Source" : {
+                                 "Property" : "LowInc",
+                                 "Entity" : "Enchilada"
+                              }
+                           }
+                        ],
+                        "Name" : "Enchilada.LowInc",
+                        "Kind" : 1,
+                        "Value" : "G0",
+                        "Depth" : 0
+                     }
+                  ],
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Keys" : [
+                                 {
+                                    "Select" : 0,
+                                    "Source" : {
+                                       "Property" : "LowInc",
+                                       "Entity" : "Enchilada"
+                                    }
+                                 }
+                              ],
+                              "Member" : "DM0"
+                           }
+                        ]
+                     }
+                  }
+               }
+            }
+         },
+         "jobId" : "8d3d5900-67c2-4eb2-9924-683bff23dabc"
+      }
+   ],
+   "jobIds" : [
+      "8d3d5900-67c2-4eb2-9924-683bff23dabc"
+   ]
+}

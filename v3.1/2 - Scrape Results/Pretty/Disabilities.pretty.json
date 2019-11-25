@@ -1,0 +1,80 @@
+{
+   "jobIds" : [
+      "675b9955-2c70-429c-8710-e4a1dca44a4c"
+   ],
+   "results" : [
+      {
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "Version" : 2,
+                  "DS" : [
+                     {
+                        "IC" : true,
+                        "N" : "DS0",
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "G0" : "Disabilities Reported",
+                                    "S" : [
+                                       {
+                                          "N" : "G0",
+                                          "T" : 1
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "G0" : "No Disabilities Reported"
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  ]
+               },
+               "descriptor" : {
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Member" : "DM0",
+                              "Keys" : [
+                                 {
+                                    "Select" : 0,
+                                    "Source" : {
+                                       "Property" : "Disabilities",
+                                       "Entity" : "Enchilada"
+                                    }
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  },
+                  "Select" : [
+                     {
+                        "GroupKeys" : [
+                           {
+                              "Source" : {
+                                 "Property" : "Disabilities",
+                                 "Entity" : "Enchilada"
+                              },
+                              "IsSameAsSelect" : true,
+                              "Calc" : "G0"
+                           }
+                        ],
+                        "Name" : "Enchilada.Disabilities",
+                        "Value" : "G0",
+                        "Kind" : 1,
+                        "Depth" : 0
+                     }
+                  ],
+                  "Version" : 2
+               }
+            }
+         },
+         "jobId" : "675b9955-2c70-429c-8710-e4a1dca44a4c"
+      }
+   ]
+}

@@ -1,0 +1,80 @@
+{
+   "results" : [
+      {
+         "result" : {
+            "data" : {
+               "descriptor" : {
+                  "Select" : [
+                     {
+                        "Depth" : 0,
+                        "Name" : "Enchilada.VeteranStatus",
+                        "GroupKeys" : [
+                           {
+                              "Calc" : "G0",
+                              "IsSameAsSelect" : true,
+                              "Source" : {
+                                 "Entity" : "Enchilada",
+                                 "Property" : "VeteranStatus"
+                              }
+                           }
+                        ],
+                        "Kind" : 1,
+                        "Value" : "G0"
+                     }
+                  ],
+                  "Version" : 2,
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Keys" : [
+                                 {
+                                    "Source" : {
+                                       "Entity" : "Enchilada",
+                                       "Property" : "VeteranStatus"
+                                    },
+                                    "Select" : 0
+                                 }
+                              ],
+                              "Member" : "DM0"
+                           }
+                        ]
+                     }
+                  }
+               },
+               "dsr" : {
+                  "Version" : 2,
+                  "DS" : [
+                     {
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "G0" : "Non-Vet",
+                                    "S" : [
+                                       {
+                                          "N" : "G0",
+                                          "T" : 1
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "G0" : "Veteran"
+                                 }
+                              ]
+                           }
+                        ],
+                        "N" : "DS0",
+                        "IC" : true
+                     }
+                  ]
+               }
+            }
+         },
+         "jobId" : "528b66df-4150-4368-998a-3568e9685940"
+      }
+   ],
+   "jobIds" : [
+      "528b66df-4150-4368-998a-3568e9685940"
+   ]
+}

@@ -1,0 +1,80 @@
+{
+   "results" : [
+      {
+         "jobId" : "be3db942-f985-44e1-867e-1abbc8e4e66b",
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "DS" : [
+                     {
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "S" : [
+                                       {
+                                          "N" : "G0",
+                                          "T" : 1
+                                       }
+                                    ],
+                                    "G0" : "CARE"
+                                 },
+                                 {
+                                    "G0" : "Non-CARE"
+                                 }
+                              ]
+                           }
+                        ],
+                        "IC" : true,
+                        "N" : "DS0"
+                     }
+                  ],
+                  "Version" : 2
+               },
+               "descriptor" : {
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Keys" : [
+                                 {
+                                    "Source" : {
+                                       "Property" : "CARE",
+                                       "Entity" : "Enchilada"
+                                    },
+                                    "Select" : 0
+                                 }
+                              ],
+                              "Member" : "DM0"
+                           }
+                        ]
+                     }
+                  },
+                  "Version" : 2,
+                  "Select" : [
+                     {
+                        "Name" : "Enchilada.CARE",
+                        "Depth" : 0,
+                        "GroupKeys" : [
+                           {
+                              "Source" : {
+                                 "Entity" : "Enchilada",
+                                 "Property" : "CARE"
+                              },
+                              "IsSameAsSelect" : true,
+                              "Calc" : "G0"
+                           }
+                        ],
+                        "Value" : "G0",
+                        "Kind" : 1
+                     }
+                  ]
+               }
+            }
+         }
+      }
+   ],
+   "jobIds" : [
+      "be3db942-f985-44e1-867e-1abbc8e4e66b"
+   ]
+}

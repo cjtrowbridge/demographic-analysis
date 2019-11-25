@@ -1,0 +1,46 @@
+{
+    "Disabilities": [
+        "Disabilities Reported",
+        "No Disabilities Reported"
+    ],
+    "Ethnic": [
+        "Af. Am./Black",
+        "Am. Ind./AK Nat.",
+        "Asian",
+        "Filipino",
+        "Hisp./Lat.",
+        "Multi",
+        "Pac. Isl.",
+        "Unknown",
+        "White"
+    ],
+    "FFY": [
+        "Foster Youth",
+        "Non-Foster Youth"
+    ],
+    "Gender": [
+        "Female",
+        "Male",
+        "Other/Not Disclosed"
+    ],
+    "LowInc": [
+        "Low Income",
+        "Not Low Income"
+    ],
+    "SexOrient": [
+        "Bisexual",
+        "Declined/Unknown",
+        "Gay or Lesbian/Homosexual",
+        "Other",
+        "Straight/Heterosexual"
+    ],
+    "Transgender": [
+        "Declined/Unknown",
+        "No",
+        "Yes"
+    ],
+    "VeteranStatus": [
+        "Non-Vet",
+        "Veteran"
+    ]
+}

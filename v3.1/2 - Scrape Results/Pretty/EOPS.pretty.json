@@ -1,0 +1,80 @@
+{
+   "jobIds" : [
+      "a999eb04-7fd1-436a-9721-74f3b49a146d"
+   ],
+   "results" : [
+      {
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "Version" : 2,
+                  "DS" : [
+                     {
+                        "N" : "DS0",
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "S" : [
+                                       {
+                                          "N" : "G0",
+                                          "T" : 1
+                                       }
+                                    ],
+                                    "G0" : "EOPS"
+                                 },
+                                 {
+                                    "G0" : "No EOPS"
+                                 }
+                              ]
+                           }
+                        ],
+                        "IC" : true
+                     }
+                  ]
+               },
+               "descriptor" : {
+                  "Select" : [
+                     {
+                        "Kind" : 1,
+                        "Value" : "G0",
+                        "GroupKeys" : [
+                           {
+                              "Calc" : "G0",
+                              "Source" : {
+                                 "Property" : "EOPS",
+                                 "Entity" : "Enchilada"
+                              },
+                              "IsSameAsSelect" : true
+                           }
+                        ],
+                        "Name" : "Enchilada.EOPS",
+                        "Depth" : 0
+                     }
+                  ],
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Member" : "DM0",
+                              "Keys" : [
+                                 {
+                                    "Select" : 0,
+                                    "Source" : {
+                                       "Property" : "EOPS",
+                                       "Entity" : "Enchilada"
+                                    }
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  },
+                  "Version" : 2
+               }
+            }
+         },
+         "jobId" : "a999eb04-7fd1-436a-9721-74f3b49a146d"
+      }
+   ]
+}

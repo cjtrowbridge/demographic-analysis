@@ -1,0 +1,83 @@
+{
+   "results" : [
+      {
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "Version" : 2,
+                  "DS" : [
+                     {
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "G0" : "Declined/Unknown",
+                                    "S" : [
+                                       {
+                                          "N" : "G0",
+                                          "T" : 1
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "G0" : "No"
+                                 },
+                                 {
+                                    "G0" : "Yes"
+                                 }
+                              ]
+                           }
+                        ],
+                        "N" : "DS0",
+                        "IC" : true
+                     }
+                  ]
+               },
+               "descriptor" : {
+                  "Select" : [
+                     {
+                        "Kind" : 1,
+                        "Value" : "G0",
+                        "GroupKeys" : [
+                           {
+                              "Source" : {
+                                 "Property" : "Transgender",
+                                 "Entity" : "Enchilada"
+                              },
+                              "Calc" : "G0",
+                              "IsSameAsSelect" : true
+                           }
+                        ],
+                        "Name" : "Enchilada.Transgender",
+                        "Depth" : 0
+                     }
+                  ],
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Member" : "DM0",
+                              "Keys" : [
+                                 {
+                                    "Select" : 0,
+                                    "Source" : {
+                                       "Entity" : "Enchilada",
+                                       "Property" : "Transgender"
+                                    }
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  },
+                  "Version" : 2
+               }
+            }
+         },
+         "jobId" : "d1840a17-651e-4eb4-999a-ade4f0737aad"
+      }
+   ],
+   "jobIds" : [
+      "d1840a17-651e-4eb4-999a-ade4f0737aad"
+   ]
+}

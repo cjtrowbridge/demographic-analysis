@@ -1,0 +1,80 @@
+{
+   "results" : [
+      {
+         "jobId" : "dfff51df-f84e-4e8a-8352-52d92c4f53b4",
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "Version" : 2,
+                  "DS" : [
+                     {
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "G0" : "CAFYES",
+                                    "S" : [
+                                       {
+                                          "T" : 1,
+                                          "N" : "G0"
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "G0" : "No CAFYES"
+                                 }
+                              ]
+                           }
+                        ],
+                        "IC" : true,
+                        "N" : "DS0"
+                     }
+                  ]
+               },
+               "descriptor" : {
+                  "Select" : [
+                     {
+                        "Value" : "G0",
+                        "Name" : "Enchilada.CAFYES",
+                        "Kind" : 1,
+                        "Depth" : 0,
+                        "GroupKeys" : [
+                           {
+                              "IsSameAsSelect" : true,
+                              "Source" : {
+                                 "Entity" : "Enchilada",
+                                 "Property" : "CAFYES"
+                              },
+                              "Calc" : "G0"
+                           }
+                        ]
+                     }
+                  ],
+                  "Version" : 2,
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Keys" : [
+                                 {
+                                    "Source" : {
+                                       "Property" : "CAFYES",
+                                       "Entity" : "Enchilada"
+                                    },
+                                    "Select" : 0
+                                 }
+                              ],
+                              "Member" : "DM0"
+                           }
+                        ]
+                     }
+                  }
+               }
+            }
+         }
+      }
+   ],
+   "jobIds" : [
+      "dfff51df-f84e-4e8a-8352-52d92c4f53b4"
+   ]
+}

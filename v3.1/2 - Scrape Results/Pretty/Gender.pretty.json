@@ -1,0 +1,83 @@
+{
+   "jobIds" : [
+      "8aa7665e-30e1-4804-b427-8238206fff3e"
+   ],
+   "results" : [
+      {
+         "result" : {
+            "data" : {
+               "descriptor" : {
+                  "Select" : [
+                     {
+                        "Name" : "Enchilada.Gender",
+                        "Kind" : 1,
+                        "GroupKeys" : [
+                           {
+                              "IsSameAsSelect" : true,
+                              "Source" : {
+                                 "Property" : "Gender",
+                                 "Entity" : "Enchilada"
+                              },
+                              "Calc" : "G0"
+                           }
+                        ],
+                        "Depth" : 0,
+                        "Value" : "G0"
+                     }
+                  ],
+                  "Version" : 2,
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Member" : "DM0",
+                              "Keys" : [
+                                 {
+                                    "Select" : 0,
+                                    "Source" : {
+                                       "Property" : "Gender",
+                                       "Entity" : "Enchilada"
+                                    }
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  }
+               },
+               "dsr" : {
+                  "DS" : [
+                     {
+                        "IC" : true,
+                        "N" : "DS0",
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "G0" : "Female",
+                                    "S" : [
+                                       {
+                                          "N" : "G0",
+                                          "T" : 1
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "G0" : "Male"
+                                 },
+                                 {
+                                    "G0" : "Other/Not Disclosed"
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  ],
+                  "Version" : 2
+               }
+            }
+         },
+         "jobId" : "8aa7665e-30e1-4804-b427-8238206fff3e"
+      }
+   ]
+}

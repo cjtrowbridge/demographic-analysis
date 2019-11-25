@@ -1,0 +1,80 @@
+{
+   "results" : [
+      {
+         "jobId" : "d62839f0-1432-4a0e-9a43-92281a228338",
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "Version" : 2,
+                  "DS" : [
+                     {
+                        "IC" : true,
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "S" : [
+                                       {
+                                          "N" : "G0",
+                                          "T" : 1
+                                       }
+                                    ],
+                                    "G0" : "Foster Youth"
+                                 },
+                                 {
+                                    "G0" : "Non-Foster Youth"
+                                 }
+                              ]
+                           }
+                        ],
+                        "N" : "DS0"
+                     }
+                  ]
+               },
+               "descriptor" : {
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Member" : "DM0",
+                              "Keys" : [
+                                 {
+                                    "Select" : 0,
+                                    "Source" : {
+                                       "Entity" : "Enchilada",
+                                       "Property" : "FFY"
+                                    }
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  },
+                  "Version" : 2,
+                  "Select" : [
+                     {
+                        "GroupKeys" : [
+                           {
+                              "Calc" : "G0",
+                              "IsSameAsSelect" : true,
+                              "Source" : {
+                                 "Property" : "FFY",
+                                 "Entity" : "Enchilada"
+                              }
+                           }
+                        ],
+                        "Value" : "G0",
+                        "Depth" : 0,
+                        "Kind" : 1,
+                        "Name" : "Enchilada.FFY"
+                     }
+                  ]
+               }
+            }
+         }
+      }
+   ],
+   "jobIds" : [
+      "d62839f0-1432-4a0e-9a43-92281a228338"
+   ]
+}

@@ -1,0 +1,101 @@
+{
+   "jobIds" : [
+      "ad3dbd62-86d3-483c-a670-30fadd83f8b0"
+   ],
+   "results" : [
+      {
+         "result" : {
+            "data" : {
+               "descriptor" : {
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Keys" : [
+                                 {
+                                    "Source" : {
+                                       "Property" : "Ethnic",
+                                       "Entity" : "Enchilada"
+                                    },
+                                    "Select" : 0
+                                 }
+                              ],
+                              "Member" : "DM0"
+                           }
+                        ]
+                     }
+                  },
+                  "Version" : 2,
+                  "Select" : [
+                     {
+                        "Name" : "Enchilada.Ethnic",
+                        "Kind" : 1,
+                        "Value" : "G0",
+                        "Depth" : 0,
+                        "GroupKeys" : [
+                           {
+                              "Calc" : "G0",
+                              "Source" : {
+                                 "Property" : "Ethnic",
+                                 "Entity" : "Enchilada"
+                              },
+                              "IsSameAsSelect" : true
+                           }
+                        ]
+                     }
+                  ]
+               },
+               "dsr" : {
+                  "DS" : [
+                     {
+                        "N" : "DS0",
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "G0" : "Af. Am./Black",
+                                    "S" : [
+                                       {
+                                          "T" : 1,
+                                          "N" : "G0"
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "G0" : "Am. Ind./AK Nat."
+                                 },
+                                 {
+                                    "G0" : "Asian"
+                                 },
+                                 {
+                                    "G0" : "Filipino"
+                                 },
+                                 {
+                                    "G0" : "Hisp./Lat."
+                                 },
+                                 {
+                                    "G0" : "Multi"
+                                 },
+                                 {
+                                    "G0" : "Pac. Isl."
+                                 },
+                                 {
+                                    "G0" : "Unknown"
+                                 },
+                                 {
+                                    "G0" : "White"
+                                 }
+                              ]
+                           }
+                        ],
+                        "IC" : true
+                     }
+                  ],
+                  "Version" : 2
+               }
+            }
+         },
+         "jobId" : "ad3dbd62-86d3-483c-a670-30fadd83f8b0"
+      }
+   ]
+}

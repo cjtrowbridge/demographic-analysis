@@ -1,0 +1,89 @@
+{
+   "results" : [
+      {
+         "jobId" : "4101964b-41c4-4cfd-acb8-633d2e9924e8",
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "Version" : 2,
+                  "DS" : [
+                     {
+                        "IC" : true,
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "G0" : "Bisexual",
+                                    "S" : [
+                                       {
+                                          "N" : "G0",
+                                          "T" : 1
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "G0" : "Declined/Unknown"
+                                 },
+                                 {
+                                    "G0" : "Gay or Lesbian/Homosexual"
+                                 },
+                                 {
+                                    "G0" : "Other"
+                                 },
+                                 {
+                                    "G0" : "Straight/Heterosexual"
+                                 }
+                              ]
+                           }
+                        ],
+                        "N" : "DS0"
+                     }
+                  ]
+               },
+               "descriptor" : {
+                  "Version" : 2,
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Member" : "DM0",
+                              "Keys" : [
+                                 {
+                                    "Select" : 0,
+                                    "Source" : {
+                                       "Entity" : "Enchilada",
+                                       "Property" : "SexOrient"
+                                    }
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  },
+                  "Select" : [
+                     {
+                        "Depth" : 0,
+                        "Kind" : 1,
+                        "Name" : "Enchilada.SexOrient",
+                        "Value" : "G0",
+                        "GroupKeys" : [
+                           {
+                              "Source" : {
+                                 "Property" : "SexOrient",
+                                 "Entity" : "Enchilada"
+                              },
+                              "IsSameAsSelect" : true,
+                              "Calc" : "G0"
+                           }
+                        ]
+                     }
+                  ]
+               }
+            }
+         }
+      }
+   ],
+   "jobIds" : [
+      "4101964b-41c4-4cfd-acb8-633d2e9924e8"
+   ]
+}

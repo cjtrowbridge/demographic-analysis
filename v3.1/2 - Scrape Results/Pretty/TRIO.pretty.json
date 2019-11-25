@@ -1,0 +1,80 @@
+{
+   "jobIds" : [
+      "a700acbd-0ac6-4f4e-a349-2c0138fbfdf9"
+   ],
+   "results" : [
+      {
+         "jobId" : "a700acbd-0ac6-4f4e-a349-2c0138fbfdf9",
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "Version" : 2,
+                  "DS" : [
+                     {
+                        "IC" : true,
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "S" : [
+                                       {
+                                          "T" : 1,
+                                          "N" : "G0"
+                                       }
+                                    ],
+                                    "G0" : "Non-TRIO"
+                                 },
+                                 {
+                                    "G0" : "TRIO"
+                                 }
+                              ]
+                           }
+                        ],
+                        "N" : "DS0"
+                     }
+                  ]
+               },
+               "descriptor" : {
+                  "Version" : 2,
+                  "Select" : [
+                     {
+                        "Name" : "Enchilada.TRIO",
+                        "Kind" : 1,
+                        "GroupKeys" : [
+                           {
+                              "Calc" : "G0",
+                              "Source" : {
+                                 "Entity" : "Enchilada",
+                                 "Property" : "TRIO"
+                              },
+                              "IsSameAsSelect" : true
+                           }
+                        ],
+                        "Depth" : 0,
+                        "Value" : "G0"
+                     }
+                  ],
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Keys" : [
+                                 {
+                                    "Source" : {
+                                       "Entity" : "Enchilada",
+                                       "Property" : "TRIO"
+                                    },
+                                    "Select" : 0
+                                 }
+                              ],
+                              "Member" : "DM0"
+                           }
+                        ]
+                     }
+                  }
+               }
+            }
+         }
+      }
+   ]
+}

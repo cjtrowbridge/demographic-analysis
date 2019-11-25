@@ -1,0 +1,80 @@
+{
+   "jobIds" : [
+      "4a1cef28-4527-4014-9df5-18b4a1aaab96"
+   ],
+   "results" : [
+      {
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "Version" : 2,
+                  "DS" : [
+                     {
+                        "N" : "DS0",
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "S" : [
+                                       {
+                                          "T" : 1,
+                                          "N" : "G0"
+                                       }
+                                    ],
+                                    "G0" : "Guardian Scholar"
+                                 },
+                                 {
+                                    "G0" : "Non-GSP"
+                                 }
+                              ]
+                           }
+                        ],
+                        "IC" : true
+                     }
+                  ]
+               },
+               "descriptor" : {
+                  "Version" : 2,
+                  "Select" : [
+                     {
+                        "Value" : "G0",
+                        "Depth" : 0,
+                        "GroupKeys" : [
+                           {
+                              "Calc" : "G0",
+                              "IsSameAsSelect" : true,
+                              "Source" : {
+                                 "Property" : "GSP",
+                                 "Entity" : "Enchilada"
+                              }
+                           }
+                        ],
+                        "Name" : "Enchilada.GSP",
+                        "Kind" : 1
+                     }
+                  ],
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Keys" : [
+                                 {
+                                    "Select" : 0,
+                                    "Source" : {
+                                       "Property" : "GSP",
+                                       "Entity" : "Enchilada"
+                                    }
+                                 }
+                              ],
+                              "Member" : "DM0"
+                           }
+                        ]
+                     }
+                  }
+               }
+            }
+         },
+         "jobId" : "4a1cef28-4527-4014-9df5-18b4a1aaab96"
+      }
+   ]
+}

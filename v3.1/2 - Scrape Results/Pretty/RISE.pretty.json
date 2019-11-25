@@ -1,0 +1,80 @@
+{
+   "jobIds" : [
+      "46e0ea83-8933-4662-8b76-08ea8ec8a3ad"
+   ],
+   "results" : [
+      {
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "DS" : [
+                     {
+                        "IC" : true,
+                        "N" : "DS0",
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "S" : [
+                                       {
+                                          "N" : "G0",
+                                          "T" : 1
+                                       }
+                                    ],
+                                    "G0" : "Non-RISE"
+                                 },
+                                 {
+                                    "G0" : "RISE"
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  ],
+                  "Version" : 2
+               },
+               "descriptor" : {
+                  "Select" : [
+                     {
+                        "GroupKeys" : [
+                           {
+                              "Source" : {
+                                 "Entity" : "Enchilada",
+                                 "Property" : "RISE"
+                              },
+                              "Calc" : "G0",
+                              "IsSameAsSelect" : true
+                           }
+                        ],
+                        "Value" : "G0",
+                        "Depth" : 0,
+                        "Name" : "Enchilada.RISE",
+                        "Kind" : 1
+                     }
+                  ],
+                  "Version" : 2,
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Member" : "DM0",
+                              "Keys" : [
+                                 {
+                                    "Select" : 0,
+                                    "Source" : {
+                                       "Entity" : "Enchilada",
+                                       "Property" : "RISE"
+                                    }
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  }
+               }
+            }
+         },
+         "jobId" : "46e0ea83-8933-4662-8b76-08ea8ec8a3ad"
+      }
+   ]
+}

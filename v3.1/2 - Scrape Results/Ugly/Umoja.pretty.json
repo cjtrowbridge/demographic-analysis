@@ -1,0 +1,80 @@
+{
+   "jobIds" : [
+      "b7c564c2-0711-4b98-ae32-c2eea2c17391"
+   ],
+   "results" : [
+      {
+         "jobId" : "b7c564c2-0711-4b98-ae32-c2eea2c17391",
+         "result" : {
+            "data" : {
+               "descriptor" : {
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Member" : "DM0",
+                              "Keys" : [
+                                 {
+                                    "Source" : {
+                                       "Property" : "Umoja",
+                                       "Entity" : "Enchilada"
+                                    },
+                                    "Select" : 0
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  },
+                  "Version" : 2,
+                  "Select" : [
+                     {
+                        "Value" : "G0",
+                        "Name" : "Enchilada.Umoja",
+                        "Kind" : 1,
+                        "Depth" : 0,
+                        "GroupKeys" : [
+                           {
+                              "IsSameAsSelect" : true,
+                              "Calc" : "G0",
+                              "Source" : {
+                                 "Entity" : "Enchilada",
+                                 "Property" : "Umoja"
+                              }
+                           }
+                        ]
+                     }
+                  ]
+               },
+               "dsr" : {
+                  "DS" : [
+                     {
+                        "N" : "DS0",
+                        "IC" : true,
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "G0" : "Non-Umoja",
+                                    "S" : [
+                                       {
+                                          "T" : 1,
+                                          "N" : "G0"
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "G0" : "Umoja"
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  ],
+                  "Version" : 2
+               }
+            }
+         }
+      }
+   ]
+}

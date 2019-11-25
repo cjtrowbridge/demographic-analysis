@@ -1,0 +1,80 @@
+{
+   "results" : [
+      {
+         "result" : {
+            "data" : {
+               "dsr" : {
+                  "Version" : 2,
+                  "DS" : [
+                     {
+                        "N" : "DS0",
+                        "IC" : true,
+                        "PH" : [
+                           {
+                              "DM0" : [
+                                 {
+                                    "G0" : "Non-Puente",
+                                    "S" : [
+                                       {
+                                          "N" : "G0",
+                                          "T" : 1
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "G0" : "Puente"
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  ]
+               },
+               "descriptor" : {
+                  "Version" : 2,
+                  "Select" : [
+                     {
+                        "Depth" : 0,
+                        "Value" : "G0",
+                        "Kind" : 1,
+                        "GroupKeys" : [
+                           {
+                              "Calc" : "G0",
+                              "IsSameAsSelect" : true,
+                              "Source" : {
+                                 "Entity" : "Enchilada",
+                                 "Property" : "Puente"
+                              }
+                           }
+                        ],
+                        "Name" : "Enchilada.Puente"
+                     }
+                  ],
+                  "Expressions" : {
+                     "Primary" : {
+                        "Groupings" : [
+                           {
+                              "Member" : "DM0",
+                              "Keys" : [
+                                 {
+                                    "Source" : {
+                                       "Entity" : "Enchilada",
+                                       "Property" : "Puente"
+                                    },
+                                    "Select" : 0
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  }
+               }
+            }
+         },
+         "jobId" : "d175e71d-d898-41b7-a9fd-fd0c534c8a04"
+      }
+   ],
+   "jobIds" : [
+      "d175e71d-d898-41b7-a9fd-fd0c534c8a04"
+   ]
+}
