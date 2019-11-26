@@ -22,7 +22,7 @@ This file fetches the population size for each combination in the database. It a
 8 - Fetch Success Data.py  
 This file fetches the success metrics for each population once its size is confirmed as greater than ten.  
   
-9 - Build Table.py  
+9 - Build Report.py  
 This file will extract all the values from the database and create a final report file which contains the results of the project.  
   
 Report.html  
