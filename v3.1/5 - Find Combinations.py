@@ -98,7 +98,10 @@ else:
 #Ok now we are ready to continue or begin the work of populating the list of combinations
 
 #This factor determines how many intersections of identity each population should be limited to.
-intersectionalComplexity = 4
+#Start with one here, then check population sizes using the script for that. 
+#Repeat this process with progressively higher complexities until you are not getting any large enough population sizes. 
+#This process could be automated, but it would mean making the workload on the scripts incredibly complex and difficult to monitor.
+intersectionalComplexity = 1
 
 
 #find the current state
