@@ -109,6 +109,75 @@ def getSuccessData(censusFields, PopulationID):
     c.execute(RInsertQuery)
     con.commit()
 
+def getEngMath(censusFields, PopulationID):
+    global c
+    global con
+    global fields
+    #Fetch the census data for the specified demographic fields.
+    
+    description = 'Population Description: '
+
+    headers = {
+        'Connection': 'keep-alive',
+        'Origin': 'https://app.powerbi.com',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36',
+        'ActivityId': '7f0bfb26-bc30-4995-acc7-c3dc832fa108',
+        'Accept': 'application/json, text/plain, */*',
+        'RequestId': 'a3065ccb-cc0b-1c17-8b19-f92bf3772cb1',
+        'X-PowerBI-ResourceKey': '7a6b0034-25a2-46da-93e0-b6538eb8d447',
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Sec-Fetch-Site': 'cross-site',
+        'Sec-Fetch-Mode': 'cors',
+        'Referer': 'https://app.powerbi.com/view?r=eyJrIjoiN2E2YjAwMzQtMjVhMi00NmRhLTkzZTAtYjY1MzhlYjhkNDQ3IiwidCI6ImI4Mjc1Yzg0LWFkOGEtNGViYi04MzZhLWM5ZDdkNDI1NGUzMyIsImMiOjZ9',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'en-US,en;q=0.9',
+    }
+
+    data = '{"version":"1.0.0","queries":[{"Query":{"Commands":[{"SemanticQueryDataShapeCommand":{"Query":{"Version":2,"From":[{"Name":"e","Entity":"Enchilada"}],"Select":[{"Aggregation":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"UnID"}},"Function":2},"Name":"CountNonNull(Enchilada.UnID)"},{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"CohortYear"},"Name":"Enchilada.CohortYear"},{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Math&EnglishYear"},"Name":"Enchilada.Math&EnglishYear"}],"Where":[{"Condition":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"CohortYear"}}],"Values":[[{"Literal":{"Value":"\'2014-15\'"}}],[{"Literal":{"Value":"\'2015-16\'"}}],[{"Literal":{"Value":"\'2016-17\'"}}],[{"Literal":{"Value":"\'2017-18\'"}}],[{"Literal":{"Value":"\'2018-19\'"}}]]}}},{"Condition":{"Comparison":{"ComparisonKind":2,"Left":{"Measure":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"ThresholdCheck"}},"Right":{"Literal":{"Value":"10D"}}}},"Target":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"CohortYear"}},{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Math&EnglishYear"}}]},'
+    
+    for k,v in censusFields.items():
+        v = fields[k][v]
+        if v != "null":
+            description+=str(" "+str(k)+"="+str(v)+", ")
+            data+='{"Condition":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"'+str(k)+'"}}],"Values":[[{"Literal":{"Value":"\''+str(v)+'\'"}}]]}}},'
+    data += '{"Condition":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"Enrolled"}}],"Values":[[{"Literal":{"Value":"1L"}}]]}}}],"OrderBy":[{"Direction":1,"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"e"}},"Property":"CohortYear"}}}]},"Binding":{"Primary":{"Groupings":[{"Projections":[0,1]}]},"Secondary":{"Groupings":[{"Projections":[2]}]},"DataReduction":{"DataVolume":4,"Primary":{"Window":{"Count":200}},"Secondary":{"Top":{"Count":60}}},"Version":1}}}]},"QueryId":"","ApplicationContext":{"DatasetId":"072ba346-ab3e-4a37-9d00-7312faf0be1e","Sources":[{"ReportId":"d5637877-1964-4f87-9ac1-9014a97fd913"}]}}],"cancelQueries":[],"modelId":2812002}'
+
+    response = requests.post('https://wabi-west-us-api.analysis.windows.net/public/reports/querydata', headers=headers, data=data)
+    results = response.json()
+    values = results['results'][0]['result']['data']['dsr']['DS'][0]['PH'][0]['DM0']
+    print(description)
+
+    outputValues = {'2014-15':'null','2015-16':'null','2016-17':'null','2017-18':'null','2018-19':'null'}
+    
+    for item in values:
+        fieldName = item['G0']
+
+        if len(item['X'])==1:
+            if not 'M0' in item['X'][0]:
+                numerator = 0
+                denominator = 0
+            else:
+                numerator = 0
+                denominator = item['X'][0]['M0']
+        else:
+            if not 'M0' in item['X'][0]:
+                numerator=0
+            else:
+                numerator = item['X'][0]['M0']
+            denominator = item['X'][1]['M0']
+        
+        if denominator == 0:
+            outputValues[fieldName]='null'
+        else:
+            outputValues[fieldName] = round(numerator/(numerator+denominator)*100,2)
+        
+    InsertQuery = "INSERT INTO SuccessEngMath (PopulationID, Fall2013, Fall2015, Fall2016, Fall2017, Fall2018) VALUES ('"+str(PopulationID)+"', '"+str(outputValues['2014-15'])+"', '"+str(outputValues['2015-16'])+"', '"+str(outputValues['2016-17'])+"', '"+str(outputValues['2017-18'])+"', '"+str(outputValues['2018-19'])+"')"
+    InsertQuery = InsertQuery.replace("'null'","null")
+    print(InsertQuery)
+    c.execute(InsertQuery)
+    con.commit()
+
+
 #Specify database file
 databaseFile = '6 - Combinations.sqlite'
 
@@ -138,17 +207,21 @@ for k,v in jsonObject.items():
 c.execute('CREATE TABLE IF NOT EXISTS "SuccessGPA" ("SuccessGPAID" INTEGER PRIMARY KEY AUTOINCREMENT,"PopulationID" INTEGER,"Fall2013" REAL,"Fall2014" REAL,"Fall2015" REAL,"Fall2016" REAL,"Fall2017" REAL,"Fall2018" REAL);')
 c.execute('CREATE TABLE IF NOT EXISTS "SuccessRetention" ("SuccessRetentionID" INTEGER PRIMARY KEY AUTOINCREMENT,"PopulationID" INTEGER,"Fall2013" REAL,"Fall2014" REAL,"Fall2015" REAL,"Fall2016" REAL,"Fall2017" REAL,"Fall2018" REAL);')
 c.execute('CREATE TABLE IF NOT EXISTS "SuccessCourse" ("SuccessCourseID" INTEGER PRIMARY KEY AUTOINCREMENT,"PopulationID" INTEGER,"Fall2013" REAL,"Fall2014" REAL,"Fall2015" REAL,"Fall2016" REAL,"Fall2017" REAL,"Fall2018" REAL);')
+c.execute('CREATE TABLE IF NOT EXISTS "SuccessEngMath" ("SuccessEngMathID" INTEGER PRIMARY KEY AUTOINCREMENT,"PopulationID" INTEGER,"Fall2013" REAL,"Fall2014" REAL,"Fall2015" REAL,"Fall2016" REAL,"Fall2017" REAL,"Fall2018" REAL);')
+c.execute('CREATE INDEX IF NOT EXISTS "SuccessEngMathPopulation" ON "SuccessEngMath" ("PopulationID");')
 c.execute('CREATE INDEX IF NOT EXISTS "SuccessGPAPopulation" ON "SuccessGPA" ("PopulationID");')
 c.execute('CREATE INDEX IF NOT EXISTS "SuccessRetentionPopulation" ON "SuccessRetention" ("PopulationID");')
 c.execute('CREATE INDEX IF NOT EXISTS "SuccessCoursePopulation" ON "SuccessCourse" ("PopulationID");')
 
 con.commit()
 
+
+#Get GPA, course success, and retention data
 while True:
     remainingTasks = "SELECT COUNT(*) AS Uncompleted FROM Population WHERE NOT EXISTS(SELECT SuccessGPAID FROM SuccessGPA WHERE SuccessGPA.PopulationID = Population.PopulationID) ORDER BY 1 ASC LIMIT 1"
     c.execute(remainingTasks)
     results = c.fetchone()
-    print("Remaining Tasks: "+str(results[0]))
+    print("Remaining GPA,Success,Retention Tasks: "+str(results[0]))
 
     #find something to work on
     selectQuery = "SELECT PopulationID, "
@@ -160,7 +233,7 @@ while True:
     c.execute(selectQuery)
     results = c.fetchone()
     if(results is None):
-        print("\nDone")
+        print("\nDone with GPA, Course Success, and Retention")
         break
 
     popID = results[0]
@@ -172,3 +245,36 @@ while True:
 
     #fetch and store the success data for the current population
     results = getSuccessData(state,popID)    
+
+
+
+#Get first year math and english completion data
+while True:
+
+    remainingTasks = "SELECT COUNT(*) AS Uncompleted FROM Population WHERE NOT EXISTS(SELECT SuccessEngMathID FROM SuccessEngMath WHERE SuccessEngMath.PopulationID = Population.PopulationID) ORDER BY 1 ASC LIMIT 1"
+    c.execute(remainingTasks)
+    results = c.fetchone()
+    print("Remaining Eng/Math Tasks: "+str(results[0]))
+
+    #find something to work on
+    selectQuery = "SELECT PopulationID, "
+    for field in fields:
+        selectQuery+=str(field)+", "
+    selectQuery=selectQuery.rstrip(", ")
+    selectQuery+=" FROM Population WHERE NOT EXISTS(SELECT SuccessEngMathID FROM SuccessEngMath WHERE SuccessEngMath.PopulationID = Population.PopulationID) ORDER BY 1 ASC LIMIT 1"
+    #print(selectQuery)
+    c.execute(selectQuery)
+    results = c.fetchone()
+    if(results is None):
+        print("\nDone with First-Year English and Math")
+        break
+
+    popID = results[0]
+    i=1 # skip PopulationID
+    state = {}
+    for field in fields:
+        state[field]=fields[field].index(results[i])
+        i+=1
+
+    #fetch and store the success data for the current population
+    results = getEngMath(state,popID)    
