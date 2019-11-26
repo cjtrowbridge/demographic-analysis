@@ -92,58 +92,61 @@ headers='''<!DOCTYPE html>
 f.write(headers)
 
 reportQuery='''
-SELECT
-    Population.PopulationID,
-    Disabilities,
-    Ethnic as 'Ethnicity',
-    FFY as 'Foster Youth',
-    Gender,
-    LowInc as 'Low Income',
-    Transgender,
-    SexOrient as 'Orientation',
-    VeteranStatus as Veteran,
-    Sum(Census.Fall2018) as 'Population Size',
-    round(avg(SuccessGPA.Fall2018),2) as 'Latest GPA',
-    (cast(
-        round(
-            avg(
-                SuccessEngMath.Fall2018
-            ),0
-        ) as int)
-        ||"%"
-    ) as 'First-Year Eng/Math Completion',
-    (cast(
-        round(
-            avg(
-                SuccessCourse.Fall2018
-            ),0
-        ) as int)
-        ||"%"
-    ) as 'Course Success',
-    (cast(
-        round(
-            avg(
-                SuccessRetention.Fall2018
-            ),0)
-        as int)
-        ||"%"
-    ) as Retention
-    
-FROM Population
-INNER JOIN Census ON Census.PopulationID = Population.PopulationID
-INNER JOIN SuccessGPA ON SuccessGPA.PopulationID = Population.PopulationID
-INNER JOIN SuccessCourse ON SuccessCourse.PopulationID = Population.PopulationID
-INNER JOIN SuccessRetention ON SuccessRetention.PopulationID = Population.PopulationID
-INNER JOIN SuccessEngMath ON SuccessEngMath.PopulationID = Population.PopulationID
+SELECT * FROM (
+    SELECT
+        Population.PopulationID,
+        Disabilities,
+        Ethnic as 'Ethnicity',
+        FFY as 'Foster Youth',
+        Gender,
+        LowInc as 'Low Income',
+        Transgender,
+        SexOrient as 'Orientation',
+        VeteranStatus as Veteran,
+        Sum(Census.Fall2018) as 'Population Size',
+        round(avg(SuccessGPA.Fall2018),2) as 'Latest GPA',
+        (cast(
+            round(
+                avg(
+                    ifnull(SuccessEngMath.Fall2018,0)
+                ),0
+            ) as int)
+            ||"%"
+        ) as 'First-Year Eng/Math Completion',
+        (cast(
+            round(
+                avg(
+                    ifnull(SuccessCourse.Fall2018,0)
+                ),0
+            ) as int)
+            ||"%"
+        ) as 'Course Success',
+        (cast(
+            round(
+                avg(
+                    ifnull(SuccessRetention.Fall2018,0)
+                ),0)
+            as int)
+            ||"%"
+        ) as Retention
+        
+    FROM Population
+    LEFT JOIN Census ON Census.PopulationID = Population.PopulationID
+    LEFT JOIN SuccessGPA ON SuccessGPA.PopulationID = Population.PopulationID
+    LEFT JOIN SuccessCourse ON SuccessCourse.PopulationID = Population.PopulationID
+    LEFT JOIN SuccessRetention ON SuccessRetention.PopulationID = Population.PopulationID
+    LEFT JOIN SuccessEngMath ON SuccessEngMath.PopulationID = Population.PopulationID
 
-GROUP BY Population.PopulationID
+    WHERE
+        Census.Fall2018 IS NOT NULL AND
+        /* SuccessEngMath.Fall2018 IS NOT NULL AND */
+        SuccessRetention.Fall2018 IS NOT NULL
+        
 
-HAVING
-    'Population Size' > 10 AND
-    Retention IS NOT NULL AND
-    'Latest GPA' IS NOT NULL AND
-    'Course Success' IS NOT NULL AND
-    'First-Year Eng/Math Completion' IS NOT NULL
+    GROUP BY Population.PopulationID
+) x
+WHERE
+    x.'Population Size' > 10
 
 '''
 columns={}
@@ -189,9 +192,8 @@ footers+='''
 <script>
   $(document).ready(function(){
     $('#populations').DataTable({
-        "order": [[ 11, "asc" ]],
+        "order": [[ 12, "asc" ]],
         columnDefs: [
-            { className: "my_class", targets: "_all" },
             {  className: "demographicMetrics", targets: [1,2,3,4,5,6,7,8] },
             {  className: "successMetrics", targets: [10,11,12,13] }
         ],
