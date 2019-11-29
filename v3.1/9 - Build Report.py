@@ -86,25 +86,56 @@ headers='''<!DOCTYPE html>
         </div><!--End Card-body-->
       </div><!--End Card-->
 
-  
+<div class="table-responsive">
   <table id="populations" class="table">
 '''
 f.write(headers)
 
-reportQuery='''
-SELECT * FROM (
+#Create View with final report results
+viewQuery = '''
+CREATE VIEW IF NOT EXISTS FinalReport AS
+
+SELECT
+	`PopulationID`,
+	`Ethnicity`,
+	`Foster Youth`,
+	`Gender`,
+	`Low Income`,
+	`Disabilities`,
+	`Transgender`,
+	`Orientation`,
+	`Veteran`,
+	`Population 17`,
+	`Population 18`,
+	(`Population 18` - `Population 17`) as 'Population Change',
+	`GPA 17`,
+	`GPA 18`,
+	(`GPA 18` - `GPA 17`) as 'GPA Change',
+	`First-Year Eng/Math Completion 17`,
+	`First-Year Eng/Math Completion 18`,
+	(`First-Year Eng/Math Completion 18` - `First-Year Eng/Math Completion 17`) as 'Eng/Math Change',
+	`Course Success 17`,
+	`Course Success 18`,
+	(`Course Success 18` - `Course Success 17`) as 'Course Success Change',
+	`Retention 17`,
+	`Retention 18`,
+	(`Retention 18` - `Retention 17`) as 'Retention Change'
+	
+FROM (
     SELECT
         Population.PopulationID,
-        Disabilities,
         Ethnic as 'Ethnicity',
         FFY as 'Foster Youth',
         Gender,
         LowInc as 'Low Income',
+        Disabilities,
         Transgender,
         SexOrient as 'Orientation',
         VeteranStatus as Veteran,
-        Sum(Census.Fall2018) as 'Population Size',
-        round(avg(SuccessGPA.Fall2018),2) as 'Latest GPA',
+        Sum(Census.Fall2017) as 'Population 17',
+        Sum(Census.Fall2018) as 'Population 18',
+        round(avg(SuccessGPA.Fall2017),2) as 'GPA 17',
+        round(avg(SuccessGPA.Fall2018),2) as 'GPA 18',
         (cast(
             round(
                 avg(
@@ -112,7 +143,23 @@ SELECT * FROM (
                 ),0
             ) as int)
             ||"%"
-        ) as 'First-Year Eng/Math Completion',
+        ) as 'First-Year Eng/Math Completion 17',
+        (cast(
+            round(
+                avg(
+                    ifnull(SuccessEngMath.Fall2018,0)
+                ),0
+            ) as int)
+            ||"%"
+        ) as 'First-Year Eng/Math Completion 18',
+        (cast(
+            round(
+                avg(
+                    ifnull(SuccessCourse.Fall2017,0)
+                ),0
+            ) as int)
+            ||"%"
+        ) as 'Course Success 17',
         (cast(
             round(
                 avg(
@@ -120,7 +167,15 @@ SELECT * FROM (
                 ),0
             ) as int)
             ||"%"
-        ) as 'Course Success',
+        ) as 'Course Success 18',
+        (cast(
+            round(
+                avg(
+                    ifnull(SuccessRetention.Fall2017,0)
+                ),0)
+            as int)
+            ||"%"
+        ) as 'Retention 17',
         (cast(
             round(
                 avg(
@@ -128,7 +183,7 @@ SELECT * FROM (
                 ),0)
             as int)
             ||"%"
-        ) as Retention
+        ) as 'Retention 18'
         
     FROM Population
     LEFT JOIN Census ON Census.PopulationID = Population.PopulationID
@@ -138,17 +193,24 @@ SELECT * FROM (
     LEFT JOIN SuccessEngMath ON SuccessEngMath.PopulationID = Population.PopulationID
 
     WHERE
-        Census.Fall2018 IS NOT NULL AND
-        /* SuccessEngMath.Fall2018 IS NOT NULL AND */
-        SuccessRetention.Fall2018 IS NOT NULL
-        
+		SuccessGPA.Fall2017 IS NOT NULL AND
+		SuccessGPA.Fall2018 IS NOT NULL /*AND
+		SuccessCourse.Fall2017 IS NOT NULL AND
+		SuccessCourse.Fall2018 IS NOT NULL AND
+		SuccessRetention.Fall2017 IS NOT NULL AND
+		SuccessRetention.Fall2018 IS NOT NULL*/
 
     GROUP BY Population.PopulationID
 ) x
-WHERE
-    x.'Population Size' > 10
-
+WHERE 
+	x.`Population 18` > 10 AND
+	x.`Population 17` > 10
+ORDER BY x.`Course Success 18` ASC
 '''
+c.execute(viewQuery)
+con.commit()
+
+reportQuery="SELECT * FROM FinalReport"
 columns={}
 headersShown = False
 c.execute(reportQuery)
@@ -184,7 +246,7 @@ footers+='''
       </tr>
     </tfoot>
   </table>
-  
+</div><!--/table-responsive-->
     </div><!--/col-12-->
   </div><!--/row-->
 </div><!--/container-->
@@ -192,10 +254,12 @@ footers+='''
 <script>
   $(document).ready(function(){
     $('#populations').DataTable({
-        "order": [[ 12, "asc" ]],
+        "order": [[ 19, "asc" ]],
         columnDefs: [
             {  className: "demographicMetrics", targets: [1,2,3,4,5,6,7,8] },
-            {  className: "successMetrics", targets: [10,11,12,13] }
+            {  className: "successMetricsA", targets: [9,10,11,15,16,17,21,22,23] },
+            {  className: "successMetricsB", targets: [12,13,14,18,19,20] }
+            
         ],
     });
   });
@@ -204,8 +268,11 @@ footers+='''
     .demographicMetrics{
         background-color: #85e3ff;
     }
-    .successMetrics{
+    .successMetricsA{
         background-color: #BFFCC6;
+    }
+    .successMetricsB{
+        background-color: #d7fcbf;
     }
 </style>
 '''
