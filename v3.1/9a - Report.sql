@@ -13,16 +13,16 @@ SELECT
 	(`Population 18` - `Population 17`) as 'Population Change',
 	`GPA 17`,
 	`GPA 18`,
-	(`GPA 18` - `GPA 17`) as 'GPA Change',
+	round(`GPA 18` - `GPA 17`,2) as 'GPA Change',
 	`First-Year Eng/Math Completion 17`,
 	`First-Year Eng/Math Completion 18`,
-	(`First-Year Eng/Math Completion 18` - `First-Year Eng/Math Completion 17`) as 'Eng/Math Change',
+	(`First-Year Eng/Math Completion 18` - `First-Year Eng/Math Completion 17`)||"%" as 'Eng/Math Change',
 	`Course Success 17`,
 	`Course Success 18`,
-	(`Course Success 18` - `Course Success 17`) as 'Course Success Change',
+	(`Course Success 18` - `Course Success 17`)||"%" as 'Course Success Change',
 	`Retention 17`,
 	`Retention 18`,
-	(`Retention 18` - `Retention 17`) as 'Retention Change'
+	(`Retention 18` - `Retention 17`)||"%" as 'Retention Change'
 	
 FROM (
     SELECT
