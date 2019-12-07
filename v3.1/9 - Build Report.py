@@ -48,7 +48,7 @@ f = open(reportFile,"w+")
 #add the header stuff
 headers='''<!DOCTYPE html>
 <head>
-  <title>CJ Trowbridge's Demographic Analysis of the Sierra College Student Body and Its Disparately Impacted Success</title>
+  <title>CJ Trowbridge's Demographic meta-analysis of the Sierra College student body and the disparately impacted success of its populations.</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -62,29 +62,8 @@ headers='''<!DOCTYPE html>
   <div class="row">
     <div class="col-12">
       <h1 style="white-space: nowrap;"><a style="color: #000; href="https://cjtrowbridge.com">CJ Trowbridge</a></h1>
-      <h5><i>Demographic analysis of the Sierra College student body and disparately impacted success.</i></h5>
-
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="card-title">The Project</h5>
-          <div class="card-text">
-            
-            <p>This project came about as a sociology internship conducted at Sierra College. I had the idea to pursue this analysis after discussing disparately impacted populations in several classes. Professors were aware that some groups are disparately impacted. At some point, I asked what groups are most impacted. Everyone had theories but no one knew the answer. Further investigation led me to realize that there was actually no way to even find the answer because nowhere was the data available in a sortable format.</p>
-            <p>The main goal of this project was to create a sortable list which shows demographics and success data. This way, we can see which groups are most impacted, and take appropriate action to support the success of those groups.</p>
-          </div><!--End Card-text-->
-        </div><!--End Card-body-->
-      </div><!--End Card-->
-
-      <div class="card mb-4">
-        <div class="card-body">
-          <h5 class="card-title">The Data</h5>
-          <div class="card-text">
-            <p>Success data is shown in green, and for the most recent semester only. The metrics shown are the ones specified by the <a href="https://www.cccco.edu/About-Us/Chancellors-Office/Divisions/College-Finance-and-Facilities-Planning/Student-Centered-Funding-Formula" target="_blank">California Community Colleges Student Centered Funding Formula</a>. (Not all of the CCC-SCFF metrics are currently being reported on the Sierra College website, but all the ones that are being reported have been included in this report.) Previous semesters are also included in the attached database and can be queried. Demographics data is shown in blue, and more data may potentially become available in the future. By default, the data here is sorted by Course Success ascending. This means you are seeing a first page of all the populations with the lowest course success. You may notice trends which already jump out. Several factors are highly significant. All ten of the most impacted groups for this success metric have the same ethnicity, and almost all of them are Former Foster Youth.</p>
-            <p>All of this data was pulled directly from the Sierra College public website, and it is accessible <a href="https://www.sierracollege.edu/equity.php" target="_blank">here</a> if you want to look through it in the non-sortable format.</p>
-            <p>Data is shown for the Fall 2018 semester. This is the most recent data available at the time this internship project was completed. The data can be updated later by using the <a href="https://github.com/cjtrowbridge/demographic-analysis" target="_blank">published tools</a> which I built in order to create this analysis.</p>
-          </div><!--End Card-text-->
-        </div><!--End Card-body-->
-      </div><!--End Card-->
+      <h5><i>Demographic meta-analysis of the Sierra College student body and the disparately impacted success of its populations.</i></h5>
+      <p>For more information about this project, <a href="https://blog.cjtrowbridge.com/2019/11/26/demographic-analysis-of-the-sierra-college-student-body-and-disparately-impacted-success/" target="_blank">click here</a>.</p>
 
 <div class="table-responsive">
   <table id="populations" class="table">
